@@ -478,10 +478,10 @@ const App = () => {
   };
 
   return (
-    <div className={`flex flex-col md:flex-row md:h-screen min-h-screen font-sans selection:bg-brand-500/30 transition-colors duration-300 ${isDarkMode ? 'bg-slate-950 text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
+    <div className={`flex flex-col md:flex-row h-screen w-screen overflow-hidden font-sans selection:bg-brand-500/30 transition-colors duration-300 ${isDarkMode ? 'bg-slate-950 text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
       
       {/* --- Sidebar --- */}
-      <div className={`w-full md:w-[420px] lg:w-[480px] flex-shrink-0 border-r md:border-r border-b md:border-b-0 backdrop-blur flex flex-col transition-colors duration-300 z-20 ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
+      <div className={`w-full md:w-[420px] lg:w-[480px] flex-shrink-0 border-r md:border-r border-b md:border-b-0 backdrop-blur flex flex-col transition-colors duration-300 z-20 overflow-hidden ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
         
         {/* Header */}
         <div className={`p-4 md:p-6 border-b flex justify-between items-start transition-colors duration-300 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
@@ -529,7 +529,7 @@ const App = () => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="md:h-full h-auto flex flex-col p-4 md:p-6 md:overflow-y-auto custom-scrollbar">
+        <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto custom-scrollbar">
           
           <div className="flex justify-between items-center mb-6">
             <h1 className={`text-2xl font-bold flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
@@ -798,7 +798,7 @@ const App = () => {
       </div>
 
       {/* --- Right Content Area --- */}
-      <div className={`flex-1 flex flex-col relative md:h-full h-auto md:overflow-hidden ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
+      <div className={`flex-1 flex flex-col relative overflow-hidden ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
          {/* Background Pattern */}
          <div 
             className="absolute inset-0 pointer-events-none opacity-20"
@@ -839,7 +839,7 @@ const App = () => {
          {/* Main Viewing Area */}
          {generatedImages.length > 0 ? (
             <div 
-                className={`w-full md:h-full h-auto min-h-[500px] md:overflow-y-auto custom-scrollbar relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
+                className={`flex-1 w-full overflow-y-auto custom-scrollbar relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
             >
                 
@@ -949,7 +949,7 @@ const App = () => {
                 </div>
             </div>
          ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center relative z-0 overflow-y-auto min-h-[500px]">
+            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center relative z-0">
                 {operationState === 'generating' ? (
                 <div className="flex flex-col items-center">
                     <div className="relative w-32 h-32 mb-6">
