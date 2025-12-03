@@ -481,89 +481,89 @@ const App = () => {
     <div className={`flex flex-col md:flex-row h-screen w-screen overflow-hidden font-sans selection:bg-brand-500/30 transition-colors duration-300 ${isDarkMode ? 'bg-slate-950 text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
       
       {/* --- Sidebar --- */}
-      <div className={`w-full md:w-[420px] lg:w-[480px] flex-shrink-0 border-r md:border-r border-b md:border-b-0 backdrop-blur flex flex-col transition-colors duration-300 z-20 overflow-hidden ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
+      <div className={`w-full md:w-[420px] lg:w-[480px] flex-shrink-0 md:border-r border-b md:border-b backdrop-blur flex flex-col transition-colors duration-300 z-20 overflow-hidden ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'} md:h-screen h-auto max-h-[50vh]`}>
         
         {/* Header */}
-        <div className={`p-4 md:p-6 border-b flex justify-between items-start transition-colors duration-300 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
+        <div className={`p-3 md:p-6 border-b flex justify-between items-start transition-colors duration-300 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
           <div className="flex flex-col gap-0.5">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/20">
-                <Bot className="w-5 h-5" />
+            <div className="flex items-center gap-2 mb-0.5 md:mb-1">
+              <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-brand-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/20">
+                <Bot className="w-4 h-4 md:w-5 md:h-5" />
               </div>
-              <span className={`font-bold text-xl tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>ViVa AI 图像创作平台</span>
+              <span className={`font-bold text-base md:text-xl tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>ViVa AI 图像创作</span>
             </div>
-            <span className="text-xs text-brand-500 font-medium tracking-wide ml-10">用AI创造无限可能</span>
+            <span className="text-[10px] md:text-xs text-brand-500 font-medium tracking-wide ml-8 md:ml-10 hidden sm:inline">用AI创造无限可能</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             <a 
               href="https://ai.feishu.cn/wiki/Xy1Zwf23YifxDHkXQ9xcTfQCn6g?from=from_copylink" 
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-lg transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'}`}
+              className={`p-1.5 md:p-2 rounded-lg transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'}`}
               title="帮助文档"
             >
-              <FileText className="w-5 h-5" />
+              <FileText className="w-4 h-4 md:w-5 md:h-5" />
             </a>
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className={`p-2 rounded-lg transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'}`}
+              className={`p-1.5 md:p-2 rounded-lg transition-colors hidden sm:flex ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'}`}
               title={isDarkMode ? "切换亮色模式" : "切换暗色模式"}
             >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDarkMode ? <Sun className="w-4 h-4 md:w-5 md:h-5" /> : <Moon className="w-4 h-4 md:w-5 md:h-5" />}
             </button>
             <button 
               onClick={() => {
                 setTempConfig(config);
                 setIsSettingsOpen(true);
               }}
-              className={`p-2 rounded-lg transition-all duration-1000 ease-in-out animate-pulse ${
+              className={`p-1.5 md:p-2 rounded-lg transition-all duration-1000 ease-in-out animate-pulse ${
                 isDarkMode 
                   ? 'text-red-500 hover:text-red-400 bg-red-500/10 hover:bg-red-500/20' 
                   : 'text-red-600 hover:text-red-700 bg-red-100 hover:bg-red-200'
               }`}
               title="系统设置"
             >
-              <Settings2 className="w-5 h-5" />
+              <Settings2 className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto custom-scrollbar">
+        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar" style={{ WebkitOverflowScrolling: 'touch' }}>
           
-          <div className="flex justify-between items-center mb-6">
-            <h1 className={`text-2xl font-bold flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
-                <Sparkles className="text-brand-500 w-6 h-6" />
+          <div className="flex justify-between items-center mb-4 md:mb-6">
+            <h1 className={`text-lg md:text-2xl font-bold flex items-center gap-1.5 md:gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
+                <Sparkles className="text-brand-500 w-5 h-5 md:w-6 md:h-6" />
                 创建图像
             </h1>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 md:gap-2">
                 <a 
                     href="https://v.vivaapi.cn" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all hover:scale-105 shadow-lg shadow-brand-500/10 ${
+                    className={`flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-md md:rounded-lg text-xs md:text-sm font-bold transition-all hover:scale-105 shadow-lg shadow-brand-500/10 ${
                         isDarkMode 
                         ? 'bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 hover:text-brand-300 border border-brand-500/20' 
                         : 'bg-brand-50 text-brand-600 hover:bg-brand-100 hover:text-brand-700 border border-brand-200'
                     }`}
                     title="创建视频"
                 >
-                    <Video className="w-4 h-4" />
-                    <span>创建视频</span>
+                    <Video className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    <span className="hidden sm:inline">视频</span>
                 </a>
                 <a 
                     href="https://m.vivaapi.cn" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all hover:scale-105 shadow-lg shadow-brand-500/10 ${
+                    className={`flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-md md:rounded-lg text-xs md:text-sm font-bold transition-all hover:scale-105 shadow-lg shadow-brand-500/10 ${
                         isDarkMode 
                         ? 'bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 hover:text-brand-300 border border-brand-500/20' 
                         : 'bg-brand-50 text-brand-600 hover:bg-brand-100 hover:text-brand-700 border border-brand-200'
                     }`}
                     title="分镜大师"
                 >
-                    <Film className="w-4 h-4" />
-                    <span>分镜大师</span>
+                    <Film className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    <span className="hidden sm:inline">分镜</span>
                 </a>
             </div>
           </div>
@@ -592,10 +592,10 @@ const App = () => {
             </button>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-4 md:space-y-8">
             
             {/* Model Selection */}
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <label className={`text-sm font-medium uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>模型选择</label>
               <div className="grid grid-cols-1 gap-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -618,7 +618,7 @@ const App = () => {
             </div>
 
             {/* Prompt & Inputs */}
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <div className="flex justify-between items-end mb-1">
                 <div className="flex items-center gap-3">
                   <label className={`text-sm font-bold uppercase tracking-wider ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>提示词</label>
@@ -707,7 +707,7 @@ const App = () => {
                   placeholder={activeTab === 'image-to-image' ? "描述如何修改这些图片..." : "描述您想要的画面内容，例如：一只赛博朋克风格的猫，霓虹灯背景..."}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  className={`w-full border rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none h-32 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400'}`}
+                  className={`w-full border rounded-lg md:rounded-xl p-3 md:p-4 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none h-24 md:h-32 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400'}`}
                 ></textarea>
               </div>
             </div>
@@ -768,17 +768,17 @@ const App = () => {
             <button 
               onClick={handleGenerate}
               disabled={operationState === 'generating'}
-              className="w-full group relative overflow-hidden bg-gradient-to-r from-brand-600 via-brand-500 to-brand-400 hover:from-brand-500 hover:to-brand-300 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full group relative overflow-hidden bg-gradient-to-r from-brand-600 via-brand-500 to-brand-400 hover:from-brand-500 hover:to-brand-300 text-white font-bold py-3 md:py-4 rounded-lg md:rounded-xl transition-all shadow-lg shadow-brand-500/25 disabled:opacity-70 disabled:cursor-not-allowed text-sm md:text-base"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {operationState === 'generating' ? (
                    <>
-                     <Loader2 className="w-5 h-5 animate-spin" />
+                     <Loader2 className="w-4 h-4 md:w-5 md:h-5 animate-spin" />
                      生成中...
                    </>
                 ) : (
                    <>
-                     <Sparkles className="w-5 h-5" />
+                     <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
                      立即生成
                    </>
                 )}
@@ -798,7 +798,7 @@ const App = () => {
       </div>
 
       {/* --- Right Content Area --- */}
-      <div className={`flex-1 flex flex-col relative overflow-hidden ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
+      <div className={`flex-1 flex flex-col relative overflow-hidden ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'} md:w-auto w-full`}>
          {/* Background Pattern */}
          <div 
             className="absolute inset-0 pointer-events-none opacity-20"
@@ -809,29 +809,29 @@ const App = () => {
          />
 
          {/* Header Bar */}
-         <div className={`h-16 border-b flex-shrink-0 flex items-center px-4 md:px-6 justify-between transition-colors duration-300 z-10 ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
-            <div className={`text-sm flex items-center gap-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                <span className="truncate max-w-[200px] md:max-w-none">{generatedImages.length > 0 ? `当前共有 ${generatedImages.length} 张作品` : '温馨提示：本应用仅供娱乐，请勿生成违法内容'}</span>
+         <div className={`h-12 md:h-16 border-b flex-shrink-0 flex items-center px-3 md:px-6 justify-between transition-colors duration-300 z-10 ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
+            <div className={`text-xs md:text-sm flex items-center gap-2 md:gap-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                <span className="truncate max-w-[120px] sm:max-w-[200px] md:max-w-none">{generatedImages.length > 0 ? `共 ${generatedImages.length} 张` : '仅供娱乐'}</span>
                 {selectedImageIds.size > 0 && (
                   <button 
                     onClick={deleteSelectedImages}
-                    className="flex items-center gap-2 text-xs bg-red-500/10 text-red-500 px-3 py-1 rounded-full hover:bg-red-500/20 transition-colors font-medium border border-red-500/20"
+                    className="flex items-center gap-1 md:gap-2 text-[10px] md:text-xs bg-red-500/10 text-red-500 px-2 md:px-3 py-1 rounded-full hover:bg-red-500/20 transition-colors font-medium border border-red-500/20"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    <span className="hidden md:inline">删除选中</span> ({selectedImageIds.size})
+                    <Trash2 className="w-3 md:w-3.5 h-3 md:h-3.5" />
+                    <span className="hidden sm:inline">删除</span> ({selectedImageIds.size})
                   </button>
                 )}
             </div>
             {apiKeyMissing && (
-              <div className="text-xs text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full flex items-center gap-2 border border-amber-500/20 animate-pulse">
-                 <span>未配置API令牌</span>
-                 <button onClick={() => setIsSettingsOpen(true)} className="underline hover:text-amber-600 font-bold">去配置</button>
+              <div className="text-[10px] md:text-xs text-amber-500 bg-amber-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-1 md:gap-2 border border-amber-500/20 animate-pulse">
+                 <span className="hidden sm:inline">未配置</span>
+                 <button onClick={() => setIsSettingsOpen(true)} className="underline hover:text-amber-600 font-bold">配置</button>
               </div>
             )}
             {!apiKeyMissing && (
-              <div className="text-xs text-green-500 bg-green-500/10 px-3 py-1 rounded-full flex items-center gap-2 border border-green-500/20">
+              <div className="text-[10px] md:text-xs text-green-500 bg-green-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-1 md:gap-2 border border-green-500/20">
                  <Check className="w-3 h-3" />
-                 <span className="hidden md:inline">API Ready {config.baseUrl && '(Custom Proxy)'}</span>
+                 <span className="hidden sm:inline">Ready</span>
               </div>
             )}
          </div>
@@ -841,10 +841,11 @@ const App = () => {
             <div 
                 className={`flex-1 w-full overflow-y-auto custom-scrollbar relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
+                style={{ WebkitOverflowScrolling: 'touch' }}
             >
                 
                 {/* Grid - Responsive grid columns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full justify-start items-start content-start">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 w-full justify-start items-start content-start">
                     
                     {/* Inline Loading Card */}
                     {operationState === 'generating' && (
@@ -861,7 +862,7 @@ const App = () => {
                             key={img.id} 
                             data-image-id={img.id}
                             data-image-card="true"
-                            className={`flex flex-col rounded-xl overflow-hidden shadow-xl transition-all hover:shadow-brand-500/10 ${isDarkMode ? 'bg-slate-900 border border-slate-800' : 'bg-white border border-slate-200'} ${selectedImageIds.has(img.id) ? 'ring-2 ring-brand-500' : ''}`}
+                            className={`flex flex-col rounded-lg md:rounded-xl overflow-hidden shadow-lg md:shadow-xl transition-all hover:shadow-brand-500/10 ${isDarkMode ? 'bg-slate-900 border border-slate-800' : 'bg-white border border-slate-200'} ${selectedImageIds.has(img.id) ? 'ring-2 ring-brand-500' : ''}`}
                         >
                             {/* Image Container */}
                             <div 
@@ -914,34 +915,36 @@ const App = () => {
                             </div>
 
                             {/* Metadata Bar */}
-                            <div className={`px-3 py-2 flex justify-between text-[10px] ${isDarkMode ? 'bg-slate-800/80' : 'bg-slate-100'}`}>
+                            <div className={`px-2 md:px-3 py-1.5 md:py-2 flex justify-between text-[9px] md:text-[10px] ${isDarkMode ? 'bg-slate-800/80' : 'bg-slate-100'}`}>
                                 <span className="text-green-500 truncate max-w-[50%]">{img.modelName}</span>
                                 <span className="text-green-500">{img.duration}</span>
                             </div>
 
                             {/* Actions Bar */}
-                            <div className={`p-2 grid grid-cols-2 gap-2 border-t ${isDarkMode ? 'border-slate-800 bg-slate-800/50' : 'border-slate-100 bg-slate-50'}`}>
+                            <div className={`p-1.5 md:p-2 grid grid-cols-2 gap-1.5 md:gap-2 border-t ${isDarkMode ? 'border-slate-800 bg-slate-800/50' : 'border-slate-100 bg-slate-50'}`}>
                                 <button 
                                     onClick={() => handleRegenerate(img)}
-                                    className={`flex items-center justify-center gap-1.5 text-xs font-bold px-2 py-1.5 rounded-lg transition-colors ${
+                                    className={`flex items-center justify-center gap-1 md:gap-1.5 text-[10px] md:text-xs font-bold px-1.5 md:px-2 py-1.5 rounded-md md:rounded-lg transition-colors ${
                                         isDarkMode 
                                         ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700' 
                                         : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
                                     }`}
                                 >
                                     <RefreshCw className="w-3 h-3" />
-                                    重新生成
+                                    <span className="hidden sm:inline">重新生成</span>
+                                    <span className="sm:hidden">重生</span>
                                 </button>
                                 <button 
                                     onClick={() => handleEditImage(img.url)}
-                                    className={`flex items-center justify-center gap-1.5 text-xs font-bold px-2 py-1.5 rounded-lg transition-colors ${
+                                    className={`flex items-center justify-center gap-1 md:gap-1.5 text-[10px] md:text-xs font-bold px-1.5 md:px-2 py-1.5 rounded-md md:rounded-lg transition-colors ${
                                         isDarkMode 
                                         ? 'bg-slate-800 hover:bg-brand-600 text-slate-300 hover:text-white border border-slate-700' 
                                         : 'bg-white hover:bg-brand-50 text-slate-600 hover:text-brand-600 border border-slate-200'
                                     }`}
                                 >
                                     <Edit className="w-3 h-3" />
-                                    编辑图片
+                                    <span className="hidden sm:inline">编辑图片</span>
+                                    <span className="sm:hidden">编辑</span>
                                 </button>
                             </div>
                         </div>

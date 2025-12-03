@@ -51,6 +51,15 @@
       .dark ::-webkit-scrollbar-thumb:hover {
         background: #475569; 
       }
+      
+      /* Mobile scrollbar - thinner */
+      @media (max-width: 768px) {
+        ::-webkit-scrollbar {
+          width: 3px;
+          height: 3px;
+        }
+      }
+      
       /* Hide scrollbar for clean UI but allow scroll */
       .no-scrollbar::-webkit-scrollbar {
           display: none;
@@ -58,6 +67,12 @@
       .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
+      }
+      
+      /* Custom scrollbar class */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #334155 #0f172a;
       }
       
       /* Mobile optimization */
@@ -85,6 +100,14 @@
         body {
           padding-left: max(0px, env(safe-area-inset-left));
           padding-right: max(0px, env(safe-area-inset-right));
+        }
+      }
+      
+      /* Smooth scrolling for mobile */
+      @media (max-width: 768px) {
+        .custom-scrollbar {
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
         }
       }
     </style>
