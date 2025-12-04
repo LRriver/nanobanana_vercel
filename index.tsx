@@ -469,13 +469,13 @@ const App = () => {
       {/* --- Sidebar (Create Panel) --- */}
       <div className={`
         w-full md:w-[420px] lg:w-[480px] 
-        flex-shrink-0 md:border-r backdrop-blur flex-col transition-colors duration-300 z-20 overflow-hidden
+        flex-shrink-0 border-r backdrop-blur flex-col transition-colors duration-300
         ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}
-        ${activeMobileTab === 'create' ? 'flex h-full' : 'hidden md:flex md:h-screen'}
+        ${activeMobileTab === 'create' ? 'flex h-full' : 'hidden md:flex h-full'}
       `}>
         
         {/* Header */}
-        <div className={`p-3 md:p-6 border-b flex justify-between items-start transition-colors duration-300 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
+        <div className={`p-3 md:p-6 border-b flex justify-between items-start transition-colors duration-300 flex-shrink-0 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
           <div className="flex flex-col gap-0.5">
             <div className="flex items-center gap-2 mb-0.5 md:mb-1">
               <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-brand-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/20">
@@ -520,7 +520,7 @@ const App = () => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar pb-24 md:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex-1 flex flex-col px-4 pt-4 md:px-6 md:pt-6 overflow-y-auto custom-scrollbar pb-24 md:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
           
           <div className="flex justify-between items-center mb-4 md:mb-6">
             <h1 className={`text-lg md:text-2xl font-bold flex items-center gap-1.5 md:gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
@@ -792,7 +792,7 @@ const App = () => {
       <div className={`
         flex-1 flex-col relative overflow-hidden
         ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}
-        ${activeMobileTab === 'gallery' ? 'flex h-full' : 'hidden md:flex md:h-screen'}
+        ${activeMobileTab === 'gallery' ? 'flex h-full' : 'hidden md:flex h-full'}
       `}>
          {/* Background Pattern */}
          <div 
@@ -974,7 +974,7 @@ const App = () => {
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <div className={`md:hidden fixed bottom-0 left-0 right-0 h-16 backdrop-blur-lg border-t z-50 flex items-center justify-around ${isDarkMode ? 'bg-slate-950/90 border-slate-800' : 'bg-white/90 border-slate-200'}`}>
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 h-16 backdrop-blur-lg border-t z-50 flex items-center justify-around pb-safe ${isDarkMode ? 'bg-slate-950/90 border-slate-800' : 'bg-white/90 border-slate-200'}`}>
         <button 
           onClick={() => setActiveMobileTab('create')}
           className={`flex flex-col items-center justify-center gap-1 w-full h-full transition-colors ${
