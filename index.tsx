@@ -541,7 +541,7 @@ const App = () => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar mobile-safe-bottom" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar pb-24 md:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
           
           <div className="flex justify-between items-center mb-4 md:mb-6">
             <h1 className={`text-lg md:text-2xl font-bold flex items-center gap-1.5 md:gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
@@ -855,7 +855,7 @@ const App = () => {
          {/* Main Viewing Area */}
          {generatedImages.length > 0 ? (
             <div 
-                className={`flex-1 w-full overflow-y-auto custom-scrollbar mobile-safe-bottom relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
+                className={`flex-1 w-full overflow-y-auto custom-scrollbar pb-24 md:pb-6 relative z-0 p-4 md:p-6 pt-0 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
                 style={{ WebkitOverflowScrolling: 'touch' }}
             >
@@ -986,7 +986,7 @@ const App = () => {
                         <ImageIcon className="w-10 h-10 opacity-50 ml-1" />
                     </div>
                     <h3 className={`text-xl font-medium mb-2 ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>暂无作品</h3>
-                    <p className="max-w-xs text-sm">请在左侧面板配置参数并创建您的第一张图片。</p>
+                    <p className="max-w-xs text-sm">请在{typeof window !== 'undefined' && window.innerWidth < 768 ? '创建图像' : '左侧'}面板配置参数并创建您的第一张图片。</p>
                 </div>
                 )}
             </div>
