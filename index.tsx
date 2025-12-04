@@ -124,7 +124,6 @@ const App = () => {
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const [selectedImageIds, setSelectedImageIds] = useState<Set<string>>(new Set());
   const [error, setError] = useState<string | null>(null);
-  const [apiKeyMissing, setApiKeyMissing] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
 
   // --- Box Selection State ---
@@ -155,14 +154,7 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // Check API Key status when config changes
-    if (config.apiKey) {
-      setApiKeyMissing(false);
-    } else {
-      checkApiKey();
-    }
-  }, [config.apiKey]);
+
 
   // Enforce Reference Image Limits when model changes
   useEffect(() => {
@@ -222,20 +214,7 @@ const App = () => {
     }
   }, [isSelecting, selectionStart]);
 
-  const checkApiKey = async () => {
-    // Only check internal AI Studio key if no custom key is provided
-    if (!config.apiKey && window.aistudio && window.aistudio.hasSelectedApiKey) {
-      const hasKey = await window.aistudio.hasSelectedApiKey();
-      setApiKeyMissing(!hasKey);
-    }
-  };
 
-  const handleSelectKey = async () => {
-    if (window.aistudio && window.aistudio.openSelectKey) {
-       await window.aistudio.openSelectKey();
-       setApiKeyMissing(false);
-    }
-  };
 
   const saveConfig = () => {
     setConfig(tempConfig);
@@ -838,14 +817,14 @@ const App = () => {
                   </button>
                 )}
             </div>
-            {apiKeyMissing && (
-              <div className="text-[10px] md:text-xs text-amber-500 bg-amber-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-1 md:gap-2 border border-amber-500/20 animate-pulse">
-                 <span className="hidden sm:inline">未配置</span>
-                 <button onClick={() => setIsSettingsOpen(true)} className="underline hover:text-amber-600 font-bold">配置</button>
+            {!config.apiKey ? (
+              <div className="flex-shrink-0 text-[10px] md:text-xs text-amber-500 bg-amber-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-2 border border-amber-500/20">
+                 <span className="hidden sm:inline">未配置 API 令牌</span>
+                 <span className="sm:hidden">未配置Token</span>
+                 <button onClick={() => setIsSettingsOpen(true)} className="underline hover:text-amber-600 font-bold">去配置</button>
               </div>
-            )}
-            {!apiKeyMissing && (
-              <div className="text-[10px] md:text-xs text-green-500 bg-green-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-1 md:gap-2 border border-green-500/20">
+            ) : (
+              <div className="flex-shrink-0 text-[10px] md:text-xs text-green-500 bg-green-500/10 px-2 md:px-3 py-1 rounded-full flex items-center gap-1 md:gap-2 border border-green-500/20">
                  <Check className="w-3 h-3" />
                  <span className="hidden sm:inline">Ready</span>
               </div>
@@ -855,7 +834,7 @@ const App = () => {
          {/* Main Viewing Area */}
          {generatedImages.length > 0 ? (
             <div 
-                className={`flex-1 w-full overflow-y-auto custom-scrollbar pb-24 md:pb-6 relative z-0 p-4 md:p-6 pt-0 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
+                className={`flex-1 overflow-y-auto custom-scrollbar p-4 md:p-6 pt-0 pb-24 md:pb-6 relative z-0 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
                 style={{ WebkitOverflowScrolling: 'touch' }}
             >

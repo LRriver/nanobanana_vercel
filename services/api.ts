@@ -101,14 +101,14 @@ export const api = {
         body: JSON.stringify({
           systemInstruction: {
             parts: [{
-              text: `你是AI绘画提示词优化专家。将用户输入优化成一个详细的英文绘画提示词。
+              text: `你是AI绘画提示词优化专家。将用户输入优化成一个专业详细的中文绘画提示词。
 
 规则：
-1. 只返回一个优化方案，不要多个选项
+1. 只返回一个优化方案，不要多个选项。
 2. 保留核心主题，添加艺术风格、光影、构图细节
 3. 使用专业术语（如：cinematic lighting, high detail, 4K等）
-4. 直接输出优化后的提示词，不要标题、编号、解释
-5. 控制在150词以内`
+4. 直接输出优化后的提示词，不要标题、编号、解释。最终输出只能是中文。
+5. 控制在220词以内`
             }]
           },
           contents: [{
@@ -116,7 +116,7 @@ export const api = {
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 2000,  // 增加到 1000
+            maxOutputTokens: 2500,  // 增加到 2500
             thinkingConfig: {
               thinkingLevel: "low"  // 降低思考力度，减少 thoughts token 消耗
             }
