@@ -540,7 +540,7 @@ const App = () => {
                     title="创建视频"
                 >
                     <Video className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                    <span className="hidden sm:inline">视频</span>
+                    <span className="hidden sm:inline">创建视频</span>
                 </a>
                 <a 
                     href="https://m.vivaapi.cn" 
@@ -554,7 +554,7 @@ const App = () => {
                     title="分镜大师"
                 >
                     <Film className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                    <span className="hidden sm:inline">分镜</span>
+                    <span className="hidden sm:inline">分镜大师</span>
                 </a>
             </div>
           </div>
