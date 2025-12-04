@@ -520,7 +520,7 @@ const App = () => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 flex flex-col px-4 pt-4 md:px-6 md:pt-6 overflow-y-auto custom-scrollbar pb-24 md:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex-1 flex flex-col px-4 pt-4 md:px-6 md:pt-6 overflow-y-auto custom-scrollbar pb-32 md:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
           
           <div className="flex justify-between items-center mb-4 md:mb-6">
             <h1 className={`text-lg md:text-2xl font-bold flex items-center gap-1.5 md:gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
@@ -834,7 +834,7 @@ const App = () => {
          {/* Main Viewing Area */}
          {generatedImages.length > 0 ? (
             <div 
-                className={`flex-1 overflow-y-auto custom-scrollbar p-4 md:p-6 pt-0 pb-24 md:pb-6 relative z-0 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
+                className={`flex-1 overflow-y-auto custom-scrollbar p-4 md:p-6 pt-0 pb-32 md:pb-6 relative z-0 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
                 style={{ WebkitOverflowScrolling: 'touch' }}
             >
