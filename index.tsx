@@ -101,6 +101,9 @@ const App = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   
+  // Mobile Tab State
+  const [activeMobileTab, setActiveMobileTab] = useState<'create' | 'gallery'>('create');
+  
   // --- Configuration State ---
   const [config, setConfig] = useState<AppConfig>({
     baseUrl: 'https://www.vivaapi.cn',
@@ -431,6 +434,10 @@ const App = () => {
         if (successes.length < count) {
           setError(`成功生成 ${successes.length} 张，失败 ${count - successes.length} 张`);
         }
+        // Switch to gallery view on mobile after creation
+        if (window.innerWidth < 768) {
+          setActiveMobileTab('gallery');
+        }
       } else {
         throw new Error(firstError || "所有图片生成失败，请检查设置或API Key");
       }
@@ -480,8 +487,13 @@ const App = () => {
   return (
     <div className={`flex flex-col md:flex-row h-screen w-screen overflow-hidden font-sans selection:bg-brand-500/30 transition-colors duration-300 ${isDarkMode ? 'bg-slate-950 text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
       
-      {/* --- Sidebar --- */}
-      <div className={`w-full md:w-[420px] lg:w-[480px] flex-shrink-0 md:border-r border-b md:border-b backdrop-blur flex flex-col transition-colors duration-300 z-20 overflow-hidden ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'} md:h-screen h-auto max-h-[50vh]`}>
+      {/* --- Sidebar (Create Panel) --- */}
+      <div className={`
+        w-full md:w-[420px] lg:w-[480px] 
+        flex-shrink-0 md:border-r backdrop-blur flex-col transition-colors duration-300 z-20 overflow-hidden
+        ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}
+        ${activeMobileTab === 'create' ? 'flex h-full' : 'hidden md:flex md:h-screen'}
+      `}>
         
         {/* Header */}
         <div className={`p-3 md:p-6 border-b flex justify-between items-start transition-colors duration-300 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
@@ -529,7 +541,7 @@ const App = () => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto custom-scrollbar mobile-safe-bottom" style={{ WebkitOverflowScrolling: 'touch' }}>
           
           <div className="flex justify-between items-center mb-4 md:mb-6">
             <h1 className={`text-lg md:text-2xl font-bold flex items-center gap-1.5 md:gap-2 ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
@@ -797,8 +809,12 @@ const App = () => {
         </div>
       </div>
 
-      {/* --- Right Content Area --- */}
-      <div className={`flex-1 flex flex-col relative overflow-hidden ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'} md:w-auto w-full`}>
+      {/* --- Right Content Area (Gallery Panel) --- */}
+      <div className={`
+        flex-1 flex-col relative overflow-hidden
+        ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}
+        ${activeMobileTab === 'gallery' ? 'flex h-full' : 'hidden md:flex md:h-screen'}
+      `}>
          {/* Background Pattern */}
          <div 
             className="absolute inset-0 pointer-events-none opacity-20"
@@ -839,7 +855,7 @@ const App = () => {
          {/* Main Viewing Area */}
          {generatedImages.length > 0 ? (
             <div 
-                className={`flex-1 w-full overflow-y-auto custom-scrollbar relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
+                className={`flex-1 w-full overflow-y-auto custom-scrollbar mobile-safe-bottom relative z-0 p-4 md:p-6 ${isSelecting ? 'select-none cursor-crosshair' : ''}`}
                 onMouseDown={handleContainerMouseDown}
                 style={{ WebkitOverflowScrolling: 'touch' }}
             >
@@ -976,6 +992,34 @@ const App = () => {
             </div>
          )}
 
+      </div>
+
+      {/* Mobile Bottom Navigation */}
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 h-16 backdrop-blur-lg border-t z-50 flex items-center justify-around ${isDarkMode ? 'bg-slate-950/90 border-slate-800' : 'bg-white/90 border-slate-200'}`}>
+        <button 
+          onClick={() => setActiveMobileTab('create')}
+          className={`flex flex-col items-center justify-center gap-1 w-full h-full transition-colors ${
+             activeMobileTab === 'create' ? 'text-brand-500' : isDarkMode ? 'text-slate-400' : 'text-slate-500'
+          }`}
+        >
+          <Sparkles className={`w-6 h-6 ${activeMobileTab === 'create' ? 'fill-current' : ''}`} />
+          <span className="text-[10px] font-medium">创建图像</span>
+        </button>
+        <div className={`w-px h-8 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-200'}`}></div>
+        <button 
+          onClick={() => setActiveMobileTab('gallery')}
+          className={`relative flex flex-col items-center justify-center gap-1 w-full h-full transition-colors ${
+             activeMobileTab === 'gallery' ? 'text-brand-500' : isDarkMode ? 'text-slate-400' : 'text-slate-500'
+          }`}
+        >
+          <ImageIcon className={`w-6 h-6 ${activeMobileTab === 'gallery' ? 'fill-current' : ''}`} />
+          <span className="text-[10px] font-medium">作品库</span>
+          {generatedImages.length > 0 && (
+            <span className="absolute top-2 right-8 px-1.5 py-0.5 bg-brand-500 text-white text-[9px] rounded-full font-bold min-w-[18px] text-center">
+              {generatedImages.length}
+            </span>
+          )}
+        </button>
       </div>
 
       {/* Settings Modal */}
