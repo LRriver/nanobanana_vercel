@@ -1,5 +1,7 @@
 # Nano Banana - Vercel 部署版
 
+[English](./README-en.md) | 简体中文
+
 基于 Gemini API 的 AI 图像生成应用，专为 Vercel 部署优化。
 
 ## 特点
@@ -22,30 +24,38 @@
 
 ## 快速部署到 Vercel
 
-### 1. 上传到 GitHub
+### 方式一：Fork 本仓库（推荐给普通用户）
+
+1. 访问本项目的 GitHub 仓库
+2. 点击右上角的 "Fork" 按钮，将项目复制到你的账号下
+3. 跳转到下面的 [连接 Vercel](#连接-vercel两种方式都适用) 步骤
+
+### 方式二：从零开始（适合开发者）
+
+如果你是从本地开发或修改了代码，需要上传到 GitHub：
 
 ```bash
 cd nanobanana_vercel
 git init
 git add .
-git commit -m "Deploy to Vercel"
+git commit -m "Initial commit"
 git branch -M main
 git remote add origin https://github.com/你的用户名/nanobanana_vercel.git
 git push -u origin main
 ```
 
-### 2. 连接 Vercel
+### 连接 Vercel（两种方式都适用）
 
 1. 访问 https://vercel.com
 2. 使用 GitHub 账号登录
-3. 点击 "Add New Project"
-4. 选择你的 `nanobanana` 仓库
+3. 点击 "Add New Project" 或 "Import Project"
+4. 选择你 Fork 或上传的仓库
 5. Vercel 会自动检测配置（已有 `vercel.json`）
 6. 点击 "Deploy"
-7. 等待 2-3 分钟
+7. 等待 2-3 分钟部署完成
 8. 完成！🎉
 
-### 3. 访问你的应用
+### 访问你的应用
 
 部署完成后，Vercel 会给你一个 URL，类似：
 ```
@@ -79,8 +89,8 @@ vercel dev
 1. 访问应用
 2. 点击右上角"系统设置"
 3. 填入 API 地址和密钥：
-   - API 地址：`https://generativelanguage.googleapis.com`
-   - API 密钥：你的 Gemini API Key
+   - API 地址：`https://www.vivaapi.cn`（推荐使用代理服务，避免CORS问题）
+   - API 密钥：从 [ViVa API](https://www.vivaapi.cn) 获取，选择"限时特价→优质Gemini"分组
 4. 开始创作
 
 ## 技术栈
@@ -173,7 +183,7 @@ Vercel 会自动重新部署！
 
 ### 技术细节
 
-- 移动端使用 `pb-24`（96px）底部padding，为64px高的底部导航栏预留足够空间
+- 移动端使用 `pb-32`（128px）底部padding，为64px高的底部导航栏预留足够空间
 - 桌面端使用 `pb-6`（24px）正常padding
 - 使用 `-webkit-overflow-scrolling: touch` 优化iOS滚动体验
 - 底部导航栏使用 `fixed` 定位，始终可见
