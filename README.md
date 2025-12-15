@@ -1,6 +1,6 @@
 # Nano Banana - Vercel 部署版
 
-[English](./README-en.md) | 简体中文
+简体中文 | [English](./README-en.md)
 
 基于 Gemini API 的 AI 图像生成应用，专为 Vercel 部署优化。
 
